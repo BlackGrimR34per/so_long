@@ -30,15 +30,10 @@ void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	enter_window(void)
+int	mouse_move(int x, int y, void *param)
 {
-	printf("Hello!\n");
-	return (0);
-}
-
-int	exit_window(void)
-{
-	printf("Bye!\n");
+	(void)param;
+	printf("Current pointer position x, y: (%d, %d)\n", x, y);
 	return (0);
 }
 
@@ -47,8 +42,7 @@ int	main(void)
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 200, 200, "Window 1");
-	mlx_hook(vars.win, 7, 1L << 4, enter_window, &vars);
-	mlx_hook(vars.win, 8, 1L << 5, exit_window, &vars);
+	vars.win = mlx_new_window(vars.mlx, 400, 400, "Window 1");
+	mlx_hook(vars.win, 6, 1L<<6, mouse_move, &vars);
 	mlx_loop(vars.mlx);
 }
