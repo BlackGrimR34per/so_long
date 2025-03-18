@@ -30,24 +30,18 @@ void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	close(int keycode, t_vars *vars)
+int	destroy_window(t_vars *param)
 {
-	printf("%d\n", keycode);
-	if (keycode == 65307)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(0);
-	}
-	return (0);
+	mlx_destroy_window(param->mlx, param->win);
+	exit (0);
 }
 
 int	main(void)
 {
-	t_vars			vars;
-	t_image_data	image;
+	t_vars	vars;
 
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Window 1");
-	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
+	vars.win = mlx_new_window(vars.mlx, 200, 200, "Window 1");
+	mlx_hook(vars.win, 17, 1L << 17, destroy_window, &vars);
 	mlx_loop(vars.mlx);
 }
