@@ -15,7 +15,12 @@
 
 #include <stdio.h>
 #include <string.h>
-#define RED 0x00FF0000
+#include <stdlib.h>
+
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
 
 void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color)
 {
@@ -25,70 +30,24 @@ void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void draw_circle(t_image_data *data, int xc, int yc, int x, int y){
-	my_mlx_pixel_put(data, xc+x, yc+y, RED);
-	my_mlx_pixel_put(data, xc-x, yc+y, RED);
-	my_mlx_pixel_put(data, xc+x, yc-y, RED);
-	my_mlx_pixel_put(data, xc-x, yc-y, RED);
-	my_mlx_pixel_put(data, xc+y, yc+x, RED);
-	my_mlx_pixel_put(data, xc-y, yc+x, RED);
-	my_mlx_pixel_put(data, xc+y, yc-x, RED);
-	my_mlx_pixel_put(data, xc-y, yc-x, RED);
-}
-
-void	circle_bres(t_image_data *data, int xc, int yc, int r)
+int	close(int keycode, t_vars *vars)
 {
-	int	x;
-	int	y;
-	int	d;
-
-	x = 0;
-	y = r;
-	d = 3 - 2 * r;
-	draw_circle(data, xc, yc, x, y);
-	while (y >= x)
+	printf("%d\n", keycode);
+	if (keycode == 65307)
 	{
-		if (d > 0)
-		{
-			y--;
-			d = d + 4 * (x - y) + 10;
-		}
-		else
-			d = d + 4 * x + 6;
-		x++;
-		draw_circle(data, xc, yc, x, y);
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
 	}
-}
-
-void	draw_square(t_image_data *data, int x, int y, int size, int color)
-{
-	int	row;
-	int	column;
-
-	row = -1;
-	while (++row < size)
-	{
-		column = -1;
-		while (++column < size)
-			my_mlx_pixel_put(data, x, y + column, color);
-		x++;
-	}
+	return (0);
 }
 
 int	main(void)
 {
-	void			*mlx_connection;
-	void			*mlx_window;
+	t_vars			vars;
 	t_image_data	image;
 
-	mlx_connection = mlx_init();
-	mlx_window = mlx_new_window(mlx_connection, 1920, 1080, "Window 1");
-	image.img = mlx_new_image(mlx_connection, 1920, 1080);
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
-			&image.line_length, &image.endian);
-	// draw_square(&image, 5, 5, 100, 0x00FF0000);
-	circle_bres(&image, 100, 100, 50);
-	mlx_put_image_to_window(mlx_connection, mlx_window, image.img, 0, 0);
-	mlx_loop(mlx_connection);
-
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Window 1");
+	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
+	mlx_loop(vars.mlx);
 }
