@@ -26,18 +26,44 @@
 # 	$(CC) -Wall -Wextra -Werror -I$(X11_INC) -I$(MLX_INC) -O3 -c $< -o $@
 
 # For MAC below
-SRCS	=	so_long.c
 
-OBJS	=	$(SRCS:.c=.o)
+NAME		=		so_long
 
-NAME	=	so_long
+CC			=		cc
 
-CC		=	cc
+CFLAGS		=		-g3 -Wall -Wextra -Werror
 
-all:		$(NAME)
+RM			=		rm -rf
 
-$(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) libmlx.a $(OBJS) -I /opt/X11/include -L /opt/X11/lib -lX11 -lXext
+LIBFT_DIR	=		./libft
 
-%.o:		%.c
-			$(CC) -c -Imlx $< -o $@
+LIBFT		=		$(LIBFT_DIR)/libft.a
+
+MLX			=	 	libmlx.a
+
+MLX_FLAGS	= 		-I /opt/X11/include -L /opt/X11/lib -lX11 -lXext
+
+SRCS_DIR	=		./srcs
+
+SRCS		=		$(wildcard $(SRCS_DIR)/*.c) so_long.c
+
+OBJS_DIR	=		objs
+
+OBJS		=		$(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
+
+all:				$(NAME)
+
+$(NAME):			$(OBJS) $(LIBFT)
+					$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
+
+$(LIBFT):
+					$(MAKE) -C $(LIBFT_DIR)
+
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c | $(OBJS_DIR)
+					$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS_DIR)/so_long.o: so_long.c | $(OBJS_DIR)
+					$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS_DIR):
+					mkdir -p $(OBJS_DIR)
