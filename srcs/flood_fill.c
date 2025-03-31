@@ -6,26 +6,38 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:42:14 by yosherau          #+#    #+#             */
-/*   Updated: 2025/03/30 15:57:54 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:15:44 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	fill(char **tab, t_point size, int row, int col)
+static void	fill(char **tab, t_map_utils *map_utils, int row, int col)
 {
-	if (row < 0 || col < 0 || row >= size.y || col >= size.x)
+	int	size_x;
+	int	size_y;
+
+	size_x = map_utils->map_size.x;
+	size_y = map_utils->map_size.y;
+	if (row < 0 || col < 0 || row > size_x || col > size_y)
 		return ;
-	if (tab[row][col] == 'F' || tab[row][col] != '0')
+	if (tab[row][col] == 'F' || (tab[row][col] != '0' && tab[row][col] != 'C'
+		&& tab[row][col] != 'P' && tab[row][col] != 'E'))
 		return ;
+	if (tab[row][col] == 'P')
+		map_utils->elem_cnt[tab[row][col] % 3]++;
+	if (tab[row][col] == 'C')
+		map_utils->elem_cnt[tab[row][col] % 3]++;
+	if (tab[row][col] == 'E')
+		map_utils->elem_cnt[tab[row][col] % 3]++;
 	tab[row][col] = 'F';
-	fill(tab, size, row -1, col);
-	fill(tab, size, row +1, col);
-	fill(tab, size, row, col - 1);
-	fill(tab, size, row, col + 1);
+	fill(tab, map_utils, row -1, col);
+	fill(tab, map_utils, row +1, col);
+	fill(tab, map_utils, row, col - 1);
+	fill(tab, map_utils, row, col + 1);
 }
 
-void	flood_fill(char **tab, t_point size, t_point begin)
+void	flood_fill(char **tab, t_map_utils *map_utils)
 {
-	fill(tab, size, begin.x, begin.y);
+	fill(tab, map_utils, map_utils->player_start.x, map_utils->player_start.y);
 }

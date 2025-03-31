@@ -6,7 +6,7 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:46:00 by yosherau          #+#    #+#             */
-/*   Updated: 2025/03/29 19:02:07 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/03/31 12:24:35 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	has_valid_walls(char **two_d_map, int row_num)
 	while (two_d_map[0][++column])
 		if (two_d_map[0][column] != 49)
 			return (1);
-	while (++row < row_num - 1)
+	while (++row < row_num)
 		if (two_d_map[row][0] != 49 || two_d_map[row][column_len - 1] != 49)
 			return (1);
 	column = -1;
