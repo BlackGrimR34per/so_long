@@ -37,12 +37,22 @@ int	main(int argc, char *argv[])
 	if (check_extension(argv[1]))
 		return (1);
 	map = map_extractor(argv[1]);
-	is_valid_map(map);
+	is_valid_map(map, &game);
 	free_map(map);
 	game.map = map_extractor(argv[1]);
 	init_game(&game);
-	// load_sprites(&game);
-	// render_map(&game);
+	load_sprites(&game);
+
+	mlx_hook(game.win, 2, 1L << 0, handle_input, &game);
+	mlx_hook(game.win, 17, 1L << 17, destroy_window, &game);
+	mlx_loop_hook(game.mlx, render_map, &game);
+	mlx_loop(game.mlx);
+
+	mlx_destroy_image(game.mlx, game.assets.c);
+	mlx_destroy_image(game.mlx, game.assets.w);
+	mlx_destroy_image(game.mlx, game.assets.e);
+	mlx_destroy_image(game.mlx, game.assets.p);
+	mlx_destroy_image(game.mlx, game.assets.f);
 	free_map(game.map);
 	mlx_destroy_window(game.mlx, game.win);
 	free(game.mlx);

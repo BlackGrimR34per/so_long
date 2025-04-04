@@ -6,7 +6,7 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:03:01 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/04 15:09:22 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/04 22:36:00 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,22 @@ typedef struct s_img_data
 	int		endian;
 }	t_img_data;
 
-typedef struct s_game
-{
-	char		**map;
-	void		*mlx;
-	void		*win;
-	t_assets	assets;
-	t_img_data	*img_data;
-}	t_game;
-
 typedef struct s_point
 {
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_game
+{
+	char		**map;
+	void		*mlx;
+	void		*win;
+	t_point		player;
+	t_assets	assets;
+	t_img_data	*img_data;
+}	t_game;
+
 
 typedef struct s_map_utils
 {
@@ -65,16 +67,20 @@ typedef struct s_map_utils
 }	t_map_utils;
 
 int		check_extension(char *str);
+int		check_valid_movement(int row, int col, t_game *game);
+int		destroy_window(t_game *game);
 void	flood_fill(char **tab, t_map_utils *map_utils);
 void	free_map(char **full_map);
 int		free_two_d_map(char **two_d_map);
+int		handle_input(int keycode, t_game *game);
+int		handle_movement(int row, int column, t_game *game);
 int		handle_input(int keycode, t_game *game);
 int		has_manditory_elements(int *arr);
 int		has_valid_path(char **two_d_map, t_map_utils *map_utils);
 int		has_valid_walls(char **two_d_map, int row_num);
 void	init_game(t_game *game);
 int		is_valid_chars(char **two_d_map, int *arr, t_point *point);
-int		is_valid_map(char	**two_d_map);
+int		is_valid_map(char **two_d_map, t_game *game);
 void	load_sprites(t_game *game);
 char	*ft_strrchr(const char *s, int c);
 char	**map_extractor(char *map);

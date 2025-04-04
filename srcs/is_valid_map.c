@@ -6,7 +6,7 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:24 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/01 16:38:46 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:13:34 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // 	}
 // }
 
-int	is_valid_map(char **two_d_map)
+int	is_valid_map(char **two_d_map, t_game *game)
 {
 	t_map_utils	map_utils;
 
@@ -44,5 +44,7 @@ int	is_valid_map(char **two_d_map)
 		return (free_two_d_map(two_d_map));
 	if (has_valid_path(two_d_map, &map_utils))
 		return (free_two_d_map(two_d_map));
+	game->player.x = map_utils.player_start.x;
+	game->player.y = map_utils.player_start.y;
 	return (0);
 }
