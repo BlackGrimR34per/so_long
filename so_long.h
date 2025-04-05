@@ -6,7 +6,7 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:03:01 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/04 22:36:00 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:36:01 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char	*ft_strrchr(const char *s, int c);
 char	**map_extractor(char *map);
 int		map_is_rectangle(char **two_d_map, t_point *map_size);
 int		map_parser(char *map);
+int		reflect_on_map(int row, int column, t_game *game);
 int		render_map(t_game *game);
 int		write_error(void);
 
