@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: yosherau <yosherau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:03:01 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/06 18:38:02 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:46:52 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		check_valid_movement(int row, int col, t_game *game);
 int		destroy_window(t_game *game);
 void	flood_fill(char **tab, t_map_utils *map_utils);
 void	free_map(char **full_map);
+void	free_resources(t_game *game);
 int		free_two_d_map(char **two_d_map, char *message);
 int		handle_input(int keycode, t_game *game);
 int		handle_movement(int row, int column, t_game *game);

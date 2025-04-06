@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 	game.map = map_extractor(argv[1]);
 	init_game(&game);
 	load_sprites(&game);
+
 	mlx_hook(game.win, 2, 1L << 0, handle_input, &game);
 	mlx_hook(game.win, 17, 1L << 17, destroy_window, &game);
 	mlx_loop_hook(game.mlx, render_map, &game);
