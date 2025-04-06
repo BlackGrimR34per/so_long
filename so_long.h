@@ -6,7 +6,7 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:03:01 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/05 13:36:01 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:38:02 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define CLCT_PATH "./assets/collectible.xpm"
 # define EXIT_PATH "./assets/exit.xpm"
 # define FLOOR_PATH "./assets/floor.xpm"
+# define SIZE 100
 
 typedef struct s_assets
 {
@@ -50,14 +51,16 @@ typedef struct s_point
 
 typedef struct s_game
 {
+	int			collectible_count;
+	int			movement_count;
 	char		**map;
 	void		*mlx;
 	void		*win;
+	t_point		map_size;
 	t_point		player;
 	t_assets	assets;
 	t_img_data	*img_data;
 }	t_game;
-
 
 typedef struct s_map_utils
 {
@@ -71,11 +74,11 @@ int		check_valid_movement(int row, int col, t_game *game);
 int		destroy_window(t_game *game);
 void	flood_fill(char **tab, t_map_utils *map_utils);
 void	free_map(char **full_map);
-int		free_two_d_map(char **two_d_map);
+int		free_two_d_map(char **two_d_map, char *message);
 int		handle_input(int keycode, t_game *game);
 int		handle_movement(int row, int column, t_game *game);
 int		handle_input(int keycode, t_game *game);
-int		has_manditory_elements(int *arr);
+int		has_manditory_elements(int *arr, t_game *game);
 int		has_valid_path(char **two_d_map, t_map_utils *map_utils);
 int		has_valid_walls(char **two_d_map, int row_num);
 void	init_game(t_game *game);
@@ -85,9 +88,8 @@ void	load_sprites(t_game *game);
 char	*ft_strrchr(const char *s, int c);
 char	**map_extractor(char *map);
 int		map_is_rectangle(char **two_d_map, t_point *map_size);
-int		map_parser(char *map);
+int		print_error(char *error);
 int		reflect_on_map(int row, int column, t_game *game);
 int		render_map(t_game *game);
-int		write_error(void);
 
 #endif

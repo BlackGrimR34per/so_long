@@ -6,13 +6,13 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:25:26 by yosherau          #+#    #+#             */
-/*   Updated: 2025/03/29 15:27:34 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:17:21 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	free_two_d_map(char **two_d_map)
+int	free_two_d_map(char **two_d_map, char *message)
 {
 	int	row;
 
@@ -20,5 +20,5 @@ int	free_two_d_map(char **two_d_map)
 	while (two_d_map[++row])
 		free(two_d_map[row]);
 	free(two_d_map);
-	return (write_error());
+	return (print_error(message));
 }

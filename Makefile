@@ -67,3 +67,13 @@ $(OBJS_DIR)/so_long.o: so_long.c | $(OBJS_DIR)
 
 $(OBJS_DIR):
 					mkdir -p $(OBJS_DIR)
+
+clean:
+					$(RM) $(OBJS_DIR)
+					$(MAKE) -C $(LIBFT_DIR) clean
+
+fclean:				clean
+					$(RM) $(NAME)
+					$(MAKE) -C $(LIBFT_DIR) fclean
+
+re:					fclean all
