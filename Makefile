@@ -25,6 +25,18 @@
 # %.o: %.c
 # 	$(CC) -Wall -Wextra -Werror -I$(X11_INC) -I$(MLX_INC) -O3 -c $< -o $@
 
+# clean:
+# 					$(RM) $(OBJS_DIR) so_long.o
+# 					$(MAKE) -C $(LIBFT_DIR) clean
+
+# fclean:				clean
+# 					$(RM) $(NAME)
+# 					$(MAKE) -C $(LIBFT_DIR) fclean
+
+# re:					fclean all
+
+# .PHONY:				fclean all re clean
+
 # For MAC below
 
 NAME		=		so_long
@@ -69,7 +81,7 @@ $(OBJS_DIR):
 					mkdir -p $(OBJS_DIR)
 
 clean:
-					$(RM) $(OBJS_DIR)
+					$(RM) $(OBJS_DIR) so_long.o
 					$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean:				clean
@@ -77,3 +89,5 @@ fclean:				clean
 					$(MAKE) -C $(LIBFT_DIR) fclean
 
 re:					fclean all
+
+.PHONY:				fclean all re clean
