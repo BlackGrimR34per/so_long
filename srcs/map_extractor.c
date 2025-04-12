@@ -6,7 +6,7 @@
 /*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:40:33 by yosherau          #+#    #+#             */
-/*   Updated: 2025/03/28 15:56:59 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:34:04 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	**map_extractor(char *map)
 	char	**two_d_map;
 
 	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		print_error("File does not exist");
 	line = get_next_line(fd);
 	one_d_map = ft_strdup("");
 	while (line)
