@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_extension.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: yosherau <yosherau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:23:05 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/06 18:05:18 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:20:44 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	check_extension(char *str)
 
 	dot = ft_strrchr(str, '.');
 	if (!dot)
-		return (perror("Please input a proper filename"), 1);
+		print_error("Please input a proper filename");
 	str_len = ft_strlen(dot + 1);
 	if (str_len != 3)
-		return (perror("Please input a file with proper extension"), 1);
+		print_error("Please input a file with proper extension");
 	else if (ft_strncmp(dot + 1, "ber", 3) != 0)
-		return (perror("Please input a file with proper extension"), 1);
+		print_error("Please input a file with proper extension");
 	return (0);
 }
