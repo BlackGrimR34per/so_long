@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: yosherau <yosherau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:24 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/12 13:48:36 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:01:15 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 // 	{
 // 		column = -1;
 // 		while (two_d_map[row][++column])
-// 			printf("%c", two_d_map[row][column]);
-// 		printf("\n");
+// 			ft_printf("%c", two_d_map[row][column]);
+// 		ft_printf("\n");
 // 	}
 // }
 

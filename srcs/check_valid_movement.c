@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid_movement.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yosherau <yosherau@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: yosherau <yosherau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:52:59 by yosherau          #+#    #+#             */
-/*   Updated: 2025/04/06 18:43:11 by yosherau         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:00:50 by yosherau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_valid_movement(int row, int col, t_game *game)
 {
 	if (game->map[row][col] == '1')
 	{
-		printf("Touching a wall\n");
+		ft_printf("Touching a wall\n");
 		return (1);
 	}
 	else if (game->map[row][col] == 'C')
@@ -27,7 +27,7 @@ int	check_valid_movement(int row, int col, t_game *game)
 			destroy_window(game);
 		else
 		{
-			printf("Please collect all the collectibles!\n");
+			ft_printf("Please collect all the collectibles!\n");
 			return (1);
 		}
 	}
